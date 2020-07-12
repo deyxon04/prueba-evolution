@@ -62,8 +62,8 @@ taskController.deleteTask = async (request, response, next) => {
 taskController.taskNotifications = async (request, response, next) => {
     try {
         const { user } = request
-        const tasks = await Task.find({ expiration_date: new Date(), autor: use._id })
-        return response.status(200).json(tasks)
+        const tasks = await Task.find({ expiration_date: new Date(), autor: user._id })
+        return response.status(200).json({tasks})
     } catch (error) {
         next(error)
     }
