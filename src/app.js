@@ -22,6 +22,8 @@ app.use(express.json())
 app.use('/api', authRouter)
 app.use('/api', jwtMiddeware.validateToken, taskRouter)
 
+app.use(express.static('public'));
+
 //haldlers errros
 app.use(handlersErrors)
 
