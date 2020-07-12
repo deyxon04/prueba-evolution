@@ -2,14 +2,16 @@
 
 const express = require('express')
 const authRouter = require('./routes/auth')
-const taskRouter = require('./routes/auth')
+const taskRouter = require('./routes/task')
+const handlersErrors = require('./middleware/error')
+const jwtMiddeware = require('./middleware/jwt')
 
 const morgan = require('morgan')
 const cors = require('cors')
 
 const app = express()
 
-// Configuraciones
+// Configurations
 app.use(cors())
 
 // Midldewars
@@ -18,6 +20,9 @@ app.use(express.json())
 
 // Routes
 app.use('/api', authRouter)
-app.use('/api', taskRouter)
+app.use('/api', jwtMiddeware.validateToken, taskRouter)
+
+//haldlers errros
+app.use(handlersErrors)
 
 module.exports = app

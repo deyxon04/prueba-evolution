@@ -1,0 +1,59 @@
+<div class="container-fluid p-h-0 p-v-20 h-100 bg">
+    <div class="d-flex flex-column justify-content-between h-100">
+        <div class="d-none d-md-block"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-5 m-h-auto">
+                    <nz-card class="m-b-60 shadow-lg">
+                        <div class="d-flex align-items-center justify-content-between m-b-30">
+                            <img class="img-fluid" alt="" src="assets/images/logo/logo.png">
+                            <h2 class="m-b-0">Registrarse</h2>
+                        </div>
+                        <form nz-form [formGroup]="signUpForm" class="login-form" nzLayout="vertical"
+                            (ngSubmit)="submitForm()">
+                            <nz-form-item>
+                                <nz-form-label nzRequired nzFor="name">Nombre</nz-form-label>
+                                <nz-form-control nzErrorTip="Ingresa el nombre!">
+                                    <input type="text" nz-input formControlName="name" placeholder="Nombre" id="">
+                                </nz-form-control>
+                            </nz-form-item>
+
+                            <nz-form-item>
+                                <nz-form-label nzRequired nzFor="email">Email</nz-form-label>
+                                <nz-form-control nzErrorTip="La entrada no es válida E-mail!">
+                                    <input type="text" nz-input formControlName="email" placeholder="Username"
+                                        id="email">
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label nzRequired nzFor="password">Password</nz-form-label>
+                                <nz-form-control nzErrorTip="Por favor ingrese su contraseña!">
+                                    <input type="password" nz-input formControlName="password" placeholder="Password"
+                                        id="password">
+                                </nz-form-control>
+                            </nz-form-item>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <nz-form-item>
+                                    <nz-form-control>
+                                        <label nz-checkbox formControlName="agree">
+                                            <span> Ya tienes cuenta ? <a  [routerLink]="['/authentication/login']">Inicia sesión</a></span>
+                                        </label>
+                                    </nz-form-control>
+                                </nz-form-item>
+
+                                <nz-form-item>
+                                    <nz-form-control>
+                                        <div>
+                                            <button nz-button class="login-form-button"
+                                                [nzType]="'primary'">Registarse</button>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </form>
+                    </nz-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

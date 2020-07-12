@@ -1,0 +1,110 @@
+<h1>Tareas<span class="subtitle"></span><span class="widget"></span></h1>
+
+<section class="markdown" ngNonBindable style="padding-bottom: 3% !important;">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam reprehenderit molestias, qui voluptatem!</p>
+</section>
+
+
+<div>
+
+    <div style="padding-bottom: 3% !important;">
+        <div nz-row [nzGutter]="16">
+
+            <div nz-col class="gutter-row" [nzSpan]="12">
+                <label>&nbsp;</label>
+                <button nz-button nzType="primary" nzSize="medium" (click)="showModalCreateOrEdit()">Crear
+                    tarea</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="padding-top: 20px;" *ngIf="task">
+
+        <nz-table #editRowTable nzBordered [nzData]="task">
+            <thead>
+                <tr>
+                    <th nzWidth="30%">Nombre</th>
+                    <th>Prioridad</th>
+                    <th>Fecha de vencimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of editRowTable.data">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.priority }}</td>
+                    <td>{{ data.expiration_date.substring(0,10) }}</td>
+                    <td>
+                        <nz-space nzSize="small">
+                            <nz-space-item>
+                                <button nz-button nzType="primary" nzSize="small" (click)="onShowEditTask(data)">
+                                    <i nz-icon nzType="edit"></i></button>
+                            </nz-space-item>
+                        </nz-space>
+                        <nz-space nzSize="small">
+                            <nz-space-item>
+                                <button (click)="onDeletetask(data._id)" nz-button nzType="primary" nzSize="small">
+                                    <i nz-icon nzType="delete"></i></button>
+                            </nz-space-item>
+                        </nz-space>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+
+
+
+
+
+    <!-- Inicio Modal crear o editar producto -->
+    <nz-modal [(nzVisible)]="isVisible" [nzTitle]="taskToEdit ? 'Editar tarea' : 'Crear tarea'"
+        [nzStyle]="{ width: '60%' }" nzWidth="large" nzCancelTex="Cancelar"
+        [nzOkText]="taskToEdit ? 'Editar tarea' : 'Crear tarea'" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+
+        <div>
+
+            <form [formGroup]="taskCreateForm">
+
+                <div nz-row [nzGutter]="16">
+                    <div nz-col class="gutter-row" [nzSpan]="8">
+                        <nz-form-label nzRequired nzFor="name">Registro invima</nz-form-label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Por favor ingresa el nombre de la tarea!">
+                                <input nz-input formControlName="name" id="name" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <div nz-col class="gutter-row" [nzSpan]="8">
+                        <nz-form-label nzFor="dirimagen" nzRequired>Prioridad</nz-form-label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Por favor ingresa la prioridad de la tarea!">
+                                <nz-select nzAllowClear nzPlaceHolder="Selecione la prioridad"
+                                    formControlName="priority">
+                                    <nz-option nzLabel="Alta" nzValue="Alta"></nz-option>
+                                    <nz-option nzLabel="Media" nzValue="Media"></nz-option>
+                                    <nz-option nzLabel="Baja" nzValue="Baja"></nz-option>
+
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <div nz-col class="gutter-row" [nzSpan]="8">
+                        <nz-form-label nzFor="dirimagen" nzRequired>Fecha de vencimiento</nz-form-label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Por favor ingresa la fecha de vencimiento!">
+                                <nz-date-picker formControlName="expiration_date"></nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+    </nz-modal>
+    <!-- FIn Modal crear o editar producto -->

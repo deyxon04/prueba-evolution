@@ -1,0 +1,50 @@
+<div class="container-fluid p-h-0 p-v-20 h-100 bg">
+    <div class="d-flex flex-column justify-content-between h-100">
+        <div class="d-none d-md-block"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-5 m-h-auto">
+                    <nz-card class="m-b-100 shadow-lg">
+                        <div class="d-flex align-items-center justify-content-between m-b-30">
+                            <img class="img-fluid" alt="" src="assets/images/logo/logo.png">
+                            <h2 class="m-b-0">Iniciar sesión </h2>
+                        </div>
+                        <form nz-form [formGroup]="loginForm" nzLayout="vertical" class="login-form"
+                            (ngSubmit)="submitForm()">
+                            <nz-form-item>
+                                <nz-form-label nzRequired nzFor="userName">Email</nz-form-label>
+                                <nz-form-control nzErrorTip="Por favor ingrese su correo electrónico!">
+                                    <nz-input-group [nzPrefix]="prefixUser">
+                                        <input type="email" nz-input formControlName="email"
+                                            placeholder="Correo electrónico">
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item class="relative">
+                                <nz-form-label nzRequired nzFor="password">Contraseña</nz-form-label>
+                                <nz-form-control nzErrorTip="Por favor ingrese su contraseña!">
+                                    <nz-input-group [nzPrefix]="prefixLock">
+                                        <input type="password" nz-input formControlName="password"
+                                            placeholder="Contraseña">
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="font-size-13 text-muted">¿ No tienes cuenta ? <a class="small"
+                                                [routerLink]="['/authentication/sign-up']"> Registrate</a></span>
+                                        <button nz-button class="login-form-button" [nzType]="'primary'">Ingresar
+                                        </button>
+                                    </div>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </form>
+                        <ng-template #prefixUser><i nz-icon nzType="user"></i></ng-template>
+                        <ng-template #prefixLock><i nz-icon nzType="lock"></i></ng-template>
+                    </nz-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
